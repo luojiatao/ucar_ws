@@ -1,0 +1,33 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/luo/ucar_ws/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/luo/ucar_ws/src/geometry/eigen_conversions/include/**",
+        "/home/luo/ucar_ws/src/geometry/kdl_conversions/include/**",
+        "/home/luo/ucar_ws/src/geometry/tf/include/**",
+        "/home/luo/ucar_ws/src/geometry2/tf2/include/**",
+        "/home/luo/ucar_ws/src/geometry2/tf2_bullet/include/**",
+        "/home/luo/ucar_ws/src/geometry2/tf2_eigen/include/**",
+        "/home/luo/ucar_ws/src/geometry2/tf2_geometry_msgs/include/**",
+        "/home/luo/ucar_ws/src/geometry2/tf2_kdl/include/**",
+        "/home/luo/ucar_ws/src/geometry2/tf2_msgs/include/**",
+        "/home/luo/ucar_ws/src/geometry2/tf2_ros/include/**",
+        "/home/luo/ucar_ws/src/geometry2/tf2_sensor_msgs/include/**",
+        "/home/luo/ucar_ws/src/geometry/tf_conversions/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

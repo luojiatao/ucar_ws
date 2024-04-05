@@ -1,0 +1,5 @@
+float32[3] gobal_pose
+---
+uint8 count 
+float32[3] pose1
+float32[3] pose2

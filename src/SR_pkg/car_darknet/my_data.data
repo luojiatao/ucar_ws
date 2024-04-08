@@ -1,4 +1,0 @@
-classes= 8
-train  = /home/luo/ucar_ws/src/sr_pkg/car_darknet/myData/myData_train.txt
-names  = /home/luo/ucar_ws/src/sr_pkg/car_darknet/myData/myData.names
-backup = /home/luo/ucar_ws/src/sr_pkg/car_darknet/myData/weights

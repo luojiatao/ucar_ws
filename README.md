@@ -6,9 +6,6 @@
 
 ```bash
 sh start.sh
+```
 
-图像二值化处理
-binary_image.py 文件负责订阅ROS图像主题，将接收到的图像进行二值化处理。
-
-直线检测
-line_detection.py 文件接收二值化后的图像，并应用直线检测算法。
+## vision文件夹：视觉测试文件

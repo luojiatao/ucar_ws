@@ -23,24 +23,38 @@ class LineFollower:
             # 将BGR图像转换为HSV色彩空间
             hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
             white_mask = self.create_white_mask(hsv)
-
             # 使用掩码提取白色线条，并转换回RGB空间
             white_lines = cv2.bitwise_and(frame, frame, mask=white_mask)
             white_lines = cv2.cvtColor(white_lines, cv2.COLOR_HSV2BGR)
-
             # 对白色目标进行二值化处理
             gray = cv2.cvtColor(white_lines, cv2.COLOR_BGR2GRAY)
             _, binary_image = cv2.threshold(gray, 128, 255, cv2.THRESH_BINARY)
-
+            
             # 对二值化后的图像进行形态学操作
             binary_image = cv2.morphologyEx(binary_image, cv2.MORPH_OPEN, self.kernel)
             binary_image = cv2.morphologyEx(binary_image, cv2.MORPH_CLOSE, self.kernel)
             binary_image = cv2.dilate(binary_image, self.kernel2, iterations=5)
             binary_image = cv2.erode(binary_image, self.kernel3, iterations=5)
 
-            # 显示原始视频帧和处理后的帧
-            cv2.imshow('Original Video', frame)
+            # 在新的窗口中显示处理后的二值图像
             cv2.imshow('Processed Binary Lines', binary_image)
+
+            # 使用霍夫变换检测直线
+            lines = cv2.HoughLinesP(binary_image, rho=1, theta=np.pi / 180, threshold=50, minLineLength=50, maxLineGap=10)
+
+            # 创建一个新的全黑的二值图像，用于绘制检测到的线条
+            # 这里我们使用与原始帧相同的大小，但是所有像素值都设置为0（黑色）
+            line_image = np.zeros_like(binary_image)
+
+            # 如果检测到直线，在line_image上绘制这些直线
+            if lines is not None:
+                for line in lines:
+                    x1, y1, x2, y2 = line[0]
+                    cv2.line(line_image, (x1, y1), (x2, y2), 255, 2)  # 使用255表示白色线条
+
+            # 在新的窗口中显示带有白色线条的二值化图像
+            cv2.imshow('Binary Image with White Lines', line_image)
+
 
             # 等待按键，'q'键退出
             return cv2.waitKey(50) & 0xFF != ord('q')
@@ -63,8 +77,6 @@ class LineFollower:
         finally:
             self.video_capture.release()
             cv2.destroyAllWindows()
-
-
 
 # 程序的入口点
 if __name__ == '__main__':
